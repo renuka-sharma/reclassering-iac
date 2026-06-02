@@ -17,3 +17,8 @@ az --version
 terraform --version
 Get-Module -Name ALZ -ListAvailable 
 
+# Authenticate with Azure
+az login
+az account set --subscription "<bootstrap_subscription_id>"
+az account show
+
