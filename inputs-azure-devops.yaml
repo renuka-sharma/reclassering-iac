@@ -1,0 +1,45 @@
+iac_type: "terraform"
+bootstrap_module_name: "alz_azuredevops"
+starter_module_name: "platform_landing_zone"
+
+# Decision 4: Bootstrap Resource Azure Region
+# Use the Azure region closest to your primary workload region
+bootstrap_location: "westeurope"  # REQUIRED: update to your primary region
+
+# Decision 6: Parent Management Group
+# Leave empty to nest under Tenant Root Group (recommended)
+root_parent_management_group_id: ""
+
+# Decision 7: Platform Subscriptions
+# REQUIRED: replace all four with real subscription GUIDs
+subscription_ids:
+  management: "<management-subscription-id>"      # Log Analytics, monitoring
+  identity: "<identity-subscription-id>"          # Active Directory, domain services
+  connectivity: "<connectivity-subscription-id>"  # vWAN, firewall, gateways
+  security: "<security-subscription-id>"          # Sentinel, Defender for Cloud
+
+# Decision 8: Bootstrap Resource Subscription
+# Leave empty to use the subscription connected to az cli at bootstrap time
+bootstrap_subscription_id: ""
+
+# Decision 9: Bootstrap Resource Naming
+# Produces names like: rg-alz-mgmt-001, id-alz-mgmt-plan-001, etc.
+service_name: "alz"
+environment_name: "mgmt"
+postfix_number: 1
+
+# Decision 10: Bootstrap Networking and Agents
+use_self_hosted_agents: true    # Deploy self-hosted ADO agents (recommended)
+use_private_networking: true    # State storage account uses private endpoint
+
+# Decision 11: Version Control System Settings
+# REQUIRED: supply PATs via env vars rather than this file in production:
+#   export TF_VAR_azure_devops_personal_access_token="<pat>"
+#   export TF_VAR_azure_devops_agents_personal_access_token="<pat>"
+azure_devops_personal_access_token: "<ado-bootstrap-pat>"        # REQUIRED
+azure_devops_agents_personal_access_token: "<ado-agents-pat>"    # REQUIRED
+azure_devops_organization_name: "ReclasseringNederland"                 # REQUIRED: e.g. "reclassering"
+azure_devops_project_name: "alz-platform"                        # REQUIRED: ADO project to create/use
+
+# Apply approvers: UPN list of people who must approve terraform apply in ADO
+apply_approvers: ["tab@reclassering.nl"]                 # REQUIRED: at least one UPN
