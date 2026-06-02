@@ -10,3 +10,10 @@ winget install --id Hashicorp.Terraform -e     # Windows
 
 # Install ALZ PowerShell module
 Install-Module -Name ALZ -Force -AllowClobber
+
+# Lets verify everything 
+pwsh --version
+az --version
+terraform --version
+Get-Module -Name ALZ -ListAvailable 
+
