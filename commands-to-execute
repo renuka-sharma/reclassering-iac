@@ -22,3 +22,7 @@ az login
 az account set --subscription "<bootstrap_subscription_id>"
 az account show
 
+az account management-group list --query "[].{id:id, name:name}" -o table
+
+Deploy-Accelerator -c "inputs-azure-devops.yaml" -o "."
+
