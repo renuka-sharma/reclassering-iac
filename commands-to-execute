@@ -1,0 +1,12 @@
+winget install --id Microsoft.PowerShell -e   # Windows
+
+# Install Azure CLI
+winget install --id Microsoft.AzureCLI -e     # Windows
+
+
+# Install Terraform
+winget install --id Hashicorp.Terraform -e     # Windows
+
+
+# Install ALZ PowerShell module
+Install-Module -Name ALZ -Force -AllowClobber
