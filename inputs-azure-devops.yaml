@@ -21,6 +21,7 @@ subscription_ids:
 # Decision 8: Bootstrap Resource Subscription
 # Leave empty to use the subscription connected to az cli at bootstrap time
 bootstrap_subscription_id: ""
+starter_locations: ["westeurope"]
 
 # Decision 9: Bootstrap Resource Naming
 # Produces names like: rg-alz-mgmt-001, id-alz-mgmt-plan-001, etc.
